@@ -3,18 +3,16 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 const { hasClass } = require('cheerio/lib/api/attributes')
 const port = process.env.PORT || 3000
-
 const app = express()
-var card = '3060'
-//var ti = true/false
 
+app.use('/', express.static('static'))
 
-
-app.get('/stock', (req, res) =>{ 
+app.post('/stock', (req, res) =>{ 
+    const card = req.body
 axios("https://www.microcenter.com/search/search_results.aspx?Ntt=" + card + "&Ntk=all&sortby=pricelow&N=4294966937&storeid=051")
     .then(response => {
         var index = 0
-        const info = []
+        const data = []
         const base = response.data
         const scrape = cheerio.load(base)
         scrape(".result_right", base).each(function() {
@@ -27,7 +25,7 @@ axios("https://www.microcenter.com/search/search_results.aspx?Ntt=" + card + "&N
             const stockSpacing = stockReplace.replace("                                                                                    ", "")
             const stock = stockSpacing.replace("                                                                                                                                                                                                                                            ", "")
             index++
-            info.push({
+            data.push({
                 index,
                 name,
                 price,
@@ -36,8 +34,9 @@ axios("https://www.microcenter.com/search/search_results.aspx?Ntt=" + card + "&N
             })
             
         })
-        console.log(info)
+        console.log(data)
         res.send(info)
+        console.log(card)
 
     })
     .catch(e => {
