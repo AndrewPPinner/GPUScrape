@@ -9,14 +9,8 @@ const app = Vue.createApp({
         search(card) {
             axios
             .post("https://gpu-scraper.herokuapp.com/stock", card)
-            .then(response => {
-                this.data = response
-                console.log(response)
-                console.log(card)
-            })
-            .catch(e => {
-                console.log(e)
-            })
+            .then(response => (this.data = response, console.log(response)))
+            .catch(e => (console.log(e)))
         }
     },
 })

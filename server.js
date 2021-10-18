@@ -1,15 +1,21 @@
 const express = require('express')
 const axios = require('axios')
 const cheerio = require('cheerio')
-const { hasClass } = require('cheerio/lib/api/attributes')
+const bodyParser = require('body-parser')
 const port = process.env.PORT || 3000
 const app = express()
+const data = ''
+
+app.use(express.json());
+app.use(express.urlencoded());
 
 app.use('/', express.static('static'))
 
 app.post('/stock', (req, res) =>{ 
-    const card = req.body
-axios("https://www.microcenter.com/search/search_results.aspx?Ntt=" + card + "&Ntk=all&sortby=pricelow&N=4294966937&storeid=051")
+    const cardObj = req.body
+    const card = JSON.stringify(cardObj)
+axios
+.get("https://www.microcenter.com/search/search_results.aspx?Ntt=" + card + "&Ntk=all&sortby=pricelow&N=4294966937&storeid=051")
     .then(response => {
         var index = 0
         const data = []
@@ -32,16 +38,14 @@ axios("https://www.microcenter.com/search/search_results.aspx?Ntt=" + card + "&N
                 stock,
                 link,
             })
-            
         })
         console.log(data)
-        res.send(info)
-        console.log(card)
-
+        res.send(data)
     })
     .catch(e => {
         console.log(e)
     })
+    
 })
 
 
