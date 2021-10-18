@@ -9,11 +9,22 @@
         <script src="https://unpkg.com/vue@3.0.2"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
-    <body>
+    <body class="p-3 mb-2 bg-dark text-white">
         <div id='app'>
-            <input type="text" placeholder="Graphics Card" v-model='card' @keyup.enter='search(card)'>
-            <button @click='search(card)'>Search Stock</button>
-            <p>{{ data }}</p>
+            <div class="input-group flex-nowrap">
+                <input type="text" placeholder="Graphics Card" v-model='card' @keyup.enter='search(card)' style="max-width:38%;">
+            </div>
+            <div>
+                <button style="margin-top: .5rem;" class="btn btn-success" @click='search(card)'>Search Stock</button>
+            </div>
+                <div v-for='item in resData'  v-show='show' class="card text-white bg-secondary mb-3" style="width: 18rem; display: inline-block;">
+                <img v-bind:src='item.img' class="card-img-top" v-bind:alt="item.name">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p  :style="[item.available ? {'background-color':'green'} : {'background-color': 'red'}]" class="card-text">{{ item.price }}<br> {{ item.stock }}</p>
+                        <a  target="_blank" v-bind:href="item.link" class="btn btn-primary">Link To Page</a>
+                    </div>
+                </div>
         </div>
         
         <script src="app.js" async defer></script>

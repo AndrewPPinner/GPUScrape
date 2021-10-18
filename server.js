@@ -2,6 +2,7 @@ const express = require('express')
 const axios = require('axios')
 const cheerio = require('cheerio')
 const bodyParser = require('body-parser')
+const { find } = require('domutils')
 const port = process.env.PORT || 3000
 const app = express()
 const data = ''
@@ -21,15 +22,24 @@ axios
         const data = []
         const base = response.data
         const scrape = cheerio.load(base)
-        scrape(".result_right", base).each(function() {
+        scrape(".product_wrapper", base).each(function() {
            const test = scrape(this).text()
-            const name = scrape(this).find('a').attr("data-name")
-            const price = scrape(this).find('a').attr("data-price")
-            const link = scrape(this).find('a').attr("href")
+            const name = scrape(this).find('.result_right').find('a').attr("data-name")
+            const price = "$" + scrape(this).find('.result_right').find('a').attr("data-price")
+            const productLink = scrape(this).find('.result_right').find('a').attr("href")
+            const img = scrape(this).find('.SearchResultProductImage').attr("src")
+            const link = "https://www.microcenter.com/" + productLink
             const stockScrape = scrape(this).find('.stock').text()
             const stockReplace = stockScrape.replace(/[\r\n]+/gm, "")
             const stockSpacing = stockReplace.replace("                                                                                    ", "")
             const stock = stockSpacing.replace("                                                                                                                                                                                                                                            ", "")
+            var available = null
+            if(stock.startsWith('SOLD OUT')) {
+                available = false
+            }
+            else {
+                available = true
+            }
             index++
             data.push({
                 index,
@@ -37,6 +47,8 @@ axios
                 price,
                 stock,
                 link,
+                img,
+                available
             })
         })
         console.log(data)
@@ -52,5 +64,5 @@ axios
 
 
 app.listen(port, () => {
-    console.log(`Serving at ${port}`)
+    console.log(`Serving at http://localhost:${port}`)
   })
