@@ -3,10 +3,15 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 const bodyParser = require('body-parser')
 const { find } = require('domutils')
+const https = require('https')
 //set to allow heroku to set its own port value
 const port = process.env.PORT || 3000
 const app = express()
 const data = ''
+setInterval(function() {
+    https.get("https://gpu-scraper.herokuapp.com/");
+    console.log("Wake Up")
+}, 3500000);
 //bodyParser to get values from POST from front end
 app.use(express.json());
 app.use(express.urlencoded());
