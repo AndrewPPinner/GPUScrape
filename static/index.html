@@ -12,15 +12,19 @@
     <body class="p-3 mb-2 bg-dark text-white">
         <div id='app'>
             <div class="input-group flex-nowrap">
+                <!-- call vue function when enter key is pressed pass value to search function-->
                 <input type="text" placeholder="Graphics Card" v-model='card' @keyup.enter='search(card)' style="max-width:38%;">
             </div>
             <div>
+                <!-- Button to call search function and pass input value to vue function-->
                 <button style="margin-top: .5rem;" class="btn btn-success" @click='search(card)'>Search Stock</button>
             </div>
+                <!--For loop from vue axios call to server for each value in the .data array-->
                 <div v-for='item in resData'  v-show='show' class="card text-white bg-secondary mb-3" style="width: 18rem; display: inline-block;">
                 <img v-bind:src='item.img' class="card-img-top" v-bind:alt="item.name">
                     <div class="card-body">
                         <h5 class="card-title">{{ item.name }}</h5>
+                        <!-- if value of available from vue axios call is == true then the background color is green else red {value ? {true: do this} : {false: do this}}-->
                         <p  :style="[item.available ? {'background-color':'green'} : {'background-color': 'red'}]" class="card-text">{{ item.price }}<br> {{ item.stock }}</p>
                         <a  target="_blank" v-bind:href="item.link" class="btn btn-primary">Link To Page</a>
                     </div>
