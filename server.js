@@ -8,10 +8,11 @@ const https = require('https')
 const port = process.env.PORT || 3000
 const app = express()
 const data = ''
+//wake up function to keep heroku app awake
 setInterval(function() {
     https.get("https://gpu-scraper.herokuapp.com/");
     console.log("Wake Up")
-}, 3500000);
+}, 960000);
 //bodyParser to get values from POST from front end
 app.use(express.json());
 app.use(express.urlencoded());
