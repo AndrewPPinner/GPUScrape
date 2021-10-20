@@ -11,13 +11,17 @@
     </head>
     <body class="p-3 mb-2 bg-dark text-white">
         <div id='app'>
+            <select @change='location($event)' class="form-select" aria-label="Default select example">
+                <option selected>Choose Store Location</option>
+                <option v-for='loc in locationArray' v-bind:value="loc.id">{{ loc.location }}</option>
+              </select>
             <div class="input-group flex-nowrap">
                 <!-- call vue function when enter key is pressed pass value to search function-->
-                <input type="text" placeholder="Graphics Card" v-model='card' @keyup.enter='search(card)' style="max-width:38%;">
+                <input type="text" placeholder="Graphics Card" v-model='card' @keyup.enter='search(card, selectLocation, sentReq)' style="max-width:38%;">
             </div>
             <div>
                 <!-- Button to call search function and pass input value to vue function-->
-                <button style="margin-top: .5rem;" class="btn btn-success" @click='search(card)'>Search Stock</button>
+                <button style="margin-top: .5rem;" class="btn btn-success" @click='search(card, selectLocation, sentReq)'>Search Stock</button>
             </div>
                 <!--For loop from vue axios call to server for each value in the .data array-->
                 <div v-for='item in resData'  v-show='show' class="card text-white bg-secondary mb-3" style="width: 18rem; display: inline-block;">
