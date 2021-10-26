@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>GPU Scraping</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -10,24 +10,52 @@
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
     <body class="p-3 mb-2 bg-dark text-white">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="https://gpu-scraper.herokuapp.com/">Home</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="https://andrewppinner.github.io/NasaAPI/">Daily Dose of Space</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Resume</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://gpu-scraper.herokuapp.com/projects">Other Projects</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
         <div id='app'>
             <select @change='location($event)' class="form-select" aria-label="Default select example">
                 <option selected>Choose Store Location</option>
                 <option v-for='loc in locationArray' v-bind:value="loc.id">{{ loc.location }}</option>
               </select>
             <div class="input-group flex-nowrap">
+
                 <!-- call vue function when enter key is pressed pass value to search function-->
-                <input type="text" placeholder="Graphics Card" v-model='card' @keyup.enter='search(card, selectLocation, sentReq)' style="max-width:38%;">
+                <input type="text" placeholder="Graphics Card" v-model='card' @keyup.enter='search(card, selectLocation, sentReq)' style="max-width:38%; margin-top: .5rem;">
             </div>
             <div>
+                
                 <!-- Button to call search function and pass input value to vue function-->
                 <button style="margin-top: .5rem;" class="btn btn-success" @click='search(card, selectLocation, sentReq)'>Search Stock</button>
             </div>
-                <!--For loop from vue axios call to server for each value in the .data array-->
+                
+            <!--For loop from vue axios call to server for each value in the .data array-->
                 <div v-for='item in resData'  v-show='show' class="card text-white bg-secondary mb-3" style="width: 18rem; display: inline-block;">
                 <img v-bind:src='item.img' class="card-img-top" v-bind:alt="item.name">
                     <div class="card-body">
                         <h5 class="card-title">{{ item.name }}</h5>
+                        
                         <!-- if value of available from vue axios call is == true then the background color is green else red {value ? {true: do this} : {false: do this}}-->
                         <p  :style="[item.available ? {'background-color':'green'} : {'background-color': 'red'}]" class="card-text">{{ item.price }}<br> {{ item.stock }}</p>
                         <a  target="_blank" v-bind:href="item.link" class="btn btn-primary">Link To Page</a>
@@ -36,5 +64,6 @@
         </div>
         
         <script src="app.js" async defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Andrew's Other Projects</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <script src="https://unpkg.com/vue@3.0.2"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="https://gpu-scraper.herokuapp.com/">Home</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Resume</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                  <div class="card h-100">
+                    <a target="_blank" href="https://andrewppinner.github.io/FoodRecipe/">
+                        <img src="food.JPEG" class="card-img-top h-100" alt="Screenshot of Recipe Generator Site">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Recipe Generator Site</h5>
+                      <p class="card-text">A site that generates recipes at random or by meal type using <a target="_blank" href="https://spoonacular.com/food-api">Spoonacular's Food API</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card h-100">
+                    <a class="h-100" href="https://andrewppinner.github.io/pokemonapi/" target="_blank">
+                        <img src="pokemon.JPEG" class="card-img-top h-100" alt="Screenshot of Pokemon info site">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Pokemon Information</h5>
+                      <p class="card-text">Using the <a target="_blank" href="https://pokeapi.co/">Poke Co API</a> I was able to crate a site that will give you the stats and abilities of any given Pokemon</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col h-100">
+                  <div class="card">
+                    <a target="_blank" href="https://andrewppinner.github.io/NasaAPI/">
+                        <img src="space.jpg" class="card-img-top h-100" alt="Screenshot of Daily Space Image Site">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Daily Space Image</h5>
+                      <p class="card-text">A daily updated image from <a href="https://api.nasa.gov/" target="_blank">NASA's APOD API</a> that gives a brief overview of what the image depicts. There is also an option to look up APOD by date on this projects page.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="d-flex justify-content-center">
+                    <div class='spinner-border' style="width: 7rem; height: 7rem;" role="status" src="..." class="card-img-top" alt="...">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Work in Progress</h5>
+                      <p class="card-text">I am currently working on new projects and will update this page as I create new and note worthy things. If you would like to see how this page and all of my other pages are made. Please, visit my <a target="_blank" href="https://github.com/AndrewPPinner">GitHub</a> account. If you would like to get in contact with me please use the contact form above.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+        <script src="app.js" async defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    </body>
+</html>
